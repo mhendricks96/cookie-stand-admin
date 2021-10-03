@@ -1,8 +1,9 @@
-export default function Footer() {
+
+export default function Footer(props) {
   return(
     <div>
       <footer className="p-4 bg-green-500 mt-8">
-        <p>©2021</p>
+        <p>{props.reports.length} Locations World Wide</p>
       </footer>
     </div>
   )

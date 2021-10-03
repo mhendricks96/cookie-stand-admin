@@ -7,9 +7,9 @@ import Main from '../components/main'
 
 export default function Home() {
 
-  const [cookieStands, setCookieStands] = useState([])
+  const [reports, setCookieStands] = useState([])
 
-  function createStandHandler(event) {
+  function onCreate(event) {
     event.preventDefault();
 
     const cookieStand = {
@@ -17,12 +17,12 @@ export default function Home() {
       minCustomers: event.target.min_per_hour.value,
       maxCustomers: event.target.max_per_hour.value,
       avgCookies: event.target.cookies_per_sale.value,
-      id: cookieStands.length + 1
+      hourly_sales: [48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36],
+      id: reports.length + 1
     }
     
-    setCookieStands([...cookieStands, cookieStand]);
+    setCookieStands([...reports, cookieStand]);
   }
-  //console.log('cookieStand', cookieStands);
 
   return (
     <div className="bg-green-50">
@@ -31,8 +31,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Main createStandHandler={createStandHandler} cookieStands={cookieStands}/>
-      <Footer />
+      <Main onCreate={onCreate} reports={reports}/>
+      <Footer reports={reports}/>
     </div>
   )
 }
