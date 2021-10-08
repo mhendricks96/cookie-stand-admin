@@ -1,12 +1,15 @@
-// import Head from 'next/head'
-// import Link from 'next/link'
-// import Footer from '../components/footer'
-// import Header from '../components/header'
-// import Main from '../components/main'
+
 import CookieStandAdmin from '../components/cookie_stand_admin'
 import { useState } from 'react'
+import { useAuth } from '../contexts/auth'
+
 
 export default function Home() {
+
+  
+  const { user, login, logout } = useAuth();
+  // const user = {username: "michael"}
+  // const user = null
 
   const [reports, setCookieStands] = useState([])
 
@@ -27,7 +30,15 @@ export default function Home() {
 
   return (
     <div className="bg-green-50">
-      <CookieStandAdmin onCreate={onCreate} reports={reports} reports={reports}/>
+      { user ? 
+      <div>
+        <CookieStandAdmin onCreate={onCreate} reports={reports} reports={reports}/>
+        <button onClick={ logout } className="p-2 text-white bg-gray-500 rounded">Logout</button> 
+      </div> :
+      <div>
+        <h1>Please Log In </h1>
+        <button onClick= {() => login(process.env.NEXT_PUBLIC_USERNAME, process.env.NEXT_PUBLIC_PASSWORD)} className="p-2 text-white bg-gray-500 rounded">Login</button>
+      </div> }
     </div>
   )
 }
