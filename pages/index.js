@@ -1,9 +1,10 @@
-import Head from 'next/head'
-import Link from 'next/link'
+// import Head from 'next/head'
+// import Link from 'next/link'
+// import Footer from '../components/footer'
+// import Header from '../components/header'
+// import Main from '../components/main'
+import CookieStandAdmin from '../components/cookie_stand_admin'
 import { useState } from 'react'
-import Footer from '../components/footer'
-import Header from '../components/header'
-import Main from '../components/main'
 
 export default function Home() {
 
@@ -26,13 +27,7 @@ export default function Home() {
 
   return (
     <div className="bg-green-50">
-      <Head>
-        <title>Cookie Stand Admin</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header />
-      <Main onCreate={onCreate} reports={reports}/>
-      <Footer reports={reports}/>
+      <CookieStandAdmin onCreate={onCreate} reports={reports} reports={reports}/>
     </div>
   )
 }
