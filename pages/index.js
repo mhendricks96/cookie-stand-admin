@@ -2,12 +2,13 @@
 import CookieStandAdmin from '../components/cookie_stand_admin'
 import { useState } from 'react'
 import { useAuth } from '../contexts/auth'
-
+import useResource from '../hooks/useResource'
 
 export default function Home() {
 
   
   const { user, login, logout } = useAuth();
+  const { resources, loading } = useResource();
   // const user = {username: "michael"}
   // const user = null
 
@@ -32,7 +33,8 @@ export default function Home() {
     <div className="bg-green-50">
       { user ? 
       <div>
-        <CookieStandAdmin onCreate={onCreate} reports={reports} reports={reports}/>
+        <CookieStandAdmin onCreate={onCreate} reports={reports} />
+        <StandList stands={ resources } loading={ loading } />
         <button onClick={ logout } className="p-2 text-white bg-gray-500 rounded">Logout</button> 
       </div> :
       <div>
@@ -41,4 +43,17 @@ export default function Home() {
       </div> }
     </div>
   )
+}
+
+
+function StandList({stands, loading }){
+  if (loading){
+    return <p>Loading...</p>
+  }
+
+  return <ul>
+    {stands.map(stand => (
+      <li key={stand.id}>{stand.location}</li>
+    ))}
+  </ul>
 }
