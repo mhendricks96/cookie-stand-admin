@@ -13,8 +13,8 @@ export default function CookieStandAdmin(props){
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Main onCreate={props.onCreate} reports={props.reports}/>
-      <Footer reports={props.reports}/>
+      <Main onCreate={props.onCreate} reports={props.reports} stands={ props.stands } loading={ props.loading } handleSubmit = {props.handleSubmit}/>
+      <Footer reports={props.reports} stands={props.stands} loading={ props.loading }/>
     </div>
   )
 }

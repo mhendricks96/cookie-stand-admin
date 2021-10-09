@@ -1,6 +1,18 @@
+import useResource from '../hooks/useResource'
+
 export default function CreateForm(props){
   return(
-    <form onSubmit={props.onCreate} className="bg-green-200 p-8 w-9/12 rounded-md items-center mx-auto">
+    <div>
+    
+        <StandCreateForm onCreate={props.onCreate} stands={ props.stands } loading={ props.loading } handleSubmit = {props.handleSubmit}/>
+        </div>
+  )
+}
+
+
+function StandCreateForm( props ) {
+      return (
+        <form onSubmit={ props.handleSubmit } className="bg-green-200 p-8 w-9/12 rounded-md items-center mx-auto" >
           <h3 className="text-center pb-2">Create Cookie Stand</h3>
           <ul>
             <li><label className="text-xs w-full">Location<input name="location" className="flex-auto w-5/6"/></label></li>
@@ -10,7 +22,7 @@ export default function CreateForm(props){
                   <label className="text-xs">Minimum Customers per Hour</label>
                 </li>
                 <li>
-                  <input name="min_per_hour"/>
+                  <input name="minimum_customers_per_hour"/>
                 </li>
               </ul>
               <ul className="inline-block p-2">
@@ -18,7 +30,7 @@ export default function CreateForm(props){
                   <label className="text-xs">Maximum Customers per Hour</label>
                 </li>
                 <li>
-                  <input name="max_per_hour"/>
+                  <input name="maximum_customers_per_hour"/>
                 </li>
               </ul>
               <ul className="inline-block p-2">
@@ -26,7 +38,7 @@ export default function CreateForm(props){
                   <label className="text-xs">Average Cookies per Sale</label>
                 </li>
                 <li>
-                  <input name="cookies_per_sale"/>
+                  <input name="average_cookies_per_sale"/>
                 </li>
               </ul>
 
@@ -34,5 +46,5 @@ export default function CreateForm(props){
             </li>
           </ul>
         </form>
-  )
+      )
 }

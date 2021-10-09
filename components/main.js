@@ -3,15 +3,13 @@ import ReportTable from '../components/report_table'
 
 export default function Main(props) {
   return (
-    <div>
-      <main>
-      <CreateForm onCreate={props.onCreate}/>
-        <div className="text-center mt-7">
-          {props.reports.length > 0 ?
-          <ReportTable reports={props.reports}/> : 
-          <h2>No Cookie Stands Available</h2>}
-        </div>
-      </main>
-    </div>
+    
+    <main>
+      <CreateForm onCreate={props.onCreate} reports={props.reports} stands={ props.stands } loading={ props.loading } handleSubmit = {props.handleSubmit} />
+      <div className="text-center mt-7">
+        <ReportTable reports={props.reports} stands={ props.stands } loading={ props.loading }/> : 
+      </div>
+    </main>
+  
   )
 }
